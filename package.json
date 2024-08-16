@@ -1,0 +1,25 @@
+{
+  "name": "Fastify Minimal Project",
+  "version": "1.0.0",
+  "description": "A minimal project that already have fastify, typescript, typebox, env config, auto watch file change and ready for development",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./dist/index.js",
+    "dev": "tsc-watch -b --onSuccess \"node --enable-source-maps ./dist/index.js\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/source-map-support": "^0.5.10",
+    "tsc-watch": "^6.2.0",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@fastify/env": "^4.4.0",
+    "@fastify/type-provider-typebox": "^4.0.0",
+    "@sinclair/typebox": "^0.32.0",
+    "@types/node": "^22.3.0",
+    "fastify": "^4.28.1"
+  }
+}
