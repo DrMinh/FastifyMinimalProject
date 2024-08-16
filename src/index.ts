@@ -1,6 +1,7 @@
 import Fastify from 'fastify';
 import { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
 import { configEnv, EnvSchema } from './configs';
+import { routes } from './routes';
 
 const fastify = Fastify({
     //logger: true
@@ -8,25 +9,30 @@ const fastify = Fastify({
 
 configEnv(fastify);
 
-(async () => {
-    console.log('ok')
-    await fastify;
-    const envtype = fastify.getEnvs<EnvSchema>();
-    console.log('aa', envtype);
-})()
-
-
-
 // Declare a route
 fastify.get('/', function (request, reply) {
     reply.send({ hello: 'world' });
-})
+});
+
+fastify.register(routes);
 
 // Run the server!
-fastify.listen({ port: 3000 }, function (err, address) {
-    if (err) {
-        fastify.log.error(err);
-        process.exit(1);
-    }
-    // Server is now listening on ${address}
-})
+async function startServer() {
+    await fastify;
+
+    fastify.listen(
+        {
+            port: fastify.getEnvs<EnvSchema>().PORT,
+            host: fastify.getEnvs<EnvSchema>().HOST,
+        },
+        function (err, address) {
+            if (err) {
+                fastify.log.error(err);
+                process.exit(1);
+            }
+            console.log(`Server is now listening on ${address}`);
+        }
+    );
+}
+
+startServer();

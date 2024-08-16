@@ -1,10 +1,10 @@
 import fastifyEnv from "@fastify/env";
 import { Static, Type } from "@sinclair/typebox";
 import { FastifyInstance } from "fastify";
-console.log('rruuun!');
+
 // Define the schema using TypeBox  
 const schema = Type.Object({
-    PORT: Type.String({ default: '3000' }),
+    PORT: Type.Number({ default: 3000 }),
     HOST: Type.Optional(Type.String()),
     TEST: Type.Number()
 });
