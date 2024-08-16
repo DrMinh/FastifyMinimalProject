@@ -1,0 +1,1 @@
+# A very basic config for fastify project
