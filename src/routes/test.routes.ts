@@ -6,7 +6,7 @@ export async function testRoutes(fastify: FastifyInstance, options: FastifyPlugi
         var data = ''
         payload.on('data', chunk => { data += chunk })
         payload.on('end', () => {
-            console.log('get data', data);
+            console.log('parse data: ', data);
             done(null, data)
         })
     });
