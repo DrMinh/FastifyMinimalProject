@@ -7,5 +7,9 @@ export async function testRoutes(fastify: FastifyInstance, options: FastifyPlugi
         reply.send({ users: [] });
     });
 
-
+    fastify.post('/test', async (request: FastifyRequest, reply: FastifyReply) => {
+        console.log('post data: ', request.query);
+        console.log('psot body: ', request.body);
+        reply.send({ users: [] });
+    });
 }
